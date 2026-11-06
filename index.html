@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio and selected work by [Your Name]."
+    />
+    <meta name="theme-color" content="#DEE2FF" />
+    <title>agustina s. montoro - portfolio</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="256x256"
+      href="assets/favicon.png"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="header-name" href="#home">
+        <img
+          class="header-mark"
+          src="assets/icono.png"
+          alt=""
+          aria-hidden="true"
+          width="150"
+          height="150"
+        />
+        <span class="header-caption">portfolio · 2026</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#about">acerca de mí</a>
+        <a href="#projects">proyectos</a>
+        <a href="#contact">contacto</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="intro">
+        <div class="intro-copy-block">
+          <h1>hi, soy<br /><span>Agustina.</span><br /></h1>
+          <p class="intro-copy">/ analista programadora full stack.</p>
+        </div>
+        <pre
+          class="ascii-logo"
+          role="img"
+          aria-label="Ilustración ASCII decorativa"
+        >
+⠀⠀⠀⠀ ⠀⠀⠀⣀⠤⠔⠒⠒⡄⢀⣠⠤⠤⠦⡄⠀
+⠀⠀⠀⠀⠀⢀⡴⠋⠀⠀⠀⣀⠴⠊⣡⣴⣾⡿⣣⠃⠀⠀
+⠀⠀⠀⠀⢰⠋⠀⠀⠀⡤⠊⠁⣠⣾⡿⠟⣉⠴⠁⠀⠀⠀
+⠀⠀⠀⡠⠓⠀⠀⠀⠘⠁⢒⣿⠍⠓⠒⠉⠀⠀⠀⠀⠀⠀
+⠀⢠⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⣄⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⡏⠀⠀⠀⠀⠴⠂⠀⠀⠀⠀⠀⠘⢦⠀⠀⠀⠀⠀⠀⠀
+⢸⠘⠉⠀⠀⠀⣴⣶⢶⢀⠤⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀
+⠀⢷⣿⣵⣴⡆⢙⠉⡘⠟⠉⠁⠀⢀⡼⠁⠀⠀⠀⠀⠀⠀
+⢀⣾⡉⠣⠵⠶⠎⠉⠀⠀⠀⡠⠖⠛⠉⠉⠉⠙⢦⡀⠀⠀
+⠀⠊⠑⠂⠀⠤⣄⠀⠀⠀⠀⠀⠀⢀⣠⠄⠒⠀⠘⠁⠀⠀
+⣴⣒⠤⢤⡠⠔⡏⠀⠀⣀⠀⠀⠀⠀⠈⠙⠒⠢⢴⠑⢢⠀
+⠷⡀⠁⠀⠀⠈⡏⠑⠊⠉⠀⠀⠀⠀⠀⠀⠀⠀⠈⡇⢠⠁
+⠀⠈⠉⠉⠉⠉⠱⡀⠀⠀⠀⠀⠰⠀⠀⠀⠀⠀⠀⡏⠁⠀
+⠀⠀⠀⠀⠀⠀⢸⠉⠒⠤⠤⢤⡇⠀⠀⠀⠀⢀⢼⣇⠀⠀
+⠀⠀⠀⠀⠀⢠⠶⠿⠤⠤⠔⠛⡞⠦⣄⡠⡤⢊⣾⠟⠀⠀
+⠀⠀⠀⠀⠀⢱⣤⣤⣤⠠⢶⡿⠀⠀⠀⠙⠶⠽⠟⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre
+        >
+        <script>
+          const asciiLogo = document.querySelector(".ascii-logo");
+          const asciiLines = asciiLogo.textContent
+            .replace(/\u2800/g, " ")
+            .split("\n");
+          const asciiContent = document.createDocumentFragment();
+
+          asciiLines.forEach((line, row) => {
+            Array.from(line).forEach((character, column) => {
+              if (character === " ") {
+                asciiContent.append(document.createTextNode(character));
+                return;
+              }
+
+              const glyph = document.createElement("span");
+              glyph.className = "ascii-char";
+              glyph.style.setProperty(
+                "--delay",
+                `${-((row * 97 + column * 53) % 3200)}ms`,
+              );
+              glyph.textContent = character;
+              asciiContent.append(glyph);
+            });
+
+            if (row < asciiLines.length - 1) {
+              asciiContent.append(document.createTextNode("\n"));
+            }
+          });
+
+          asciiLogo.replaceChildren(asciiContent);
+          document.addEventListener("copy", (event) => {
+            const selection = window.getSelection();
+            if (
+              selection &&
+              selection.anchorNode &&
+              asciiLogo.contains(selection.anchorNode)
+            ) {
+              event.preventDefault();
+            }
+          });
+        </script>
+      </section>
+
+      <section class="content-section" id="about">
+        <h2 class="section-label"><span>01</span> / acerca de mí</h2>
+        <div class="section-content about-copy">
+          <p>me encanta el diseño, los colores pastel y el minimalismo.</p>
+          <p>
+            me considero una persona proactiva, curiosa y me fascina la
+            tecnología. siempre estoy buscando aprender y mejorar mis
+            habilidades.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section projects-section" id="projects">
+        <div class="section-label">
+          <h2><span>02</span> / proyectos seleccionados</h2>
+        </div>
+        <div class="section-content project-list">
+          <article class="project">
+            <div class="project-topline">
+              <span class="project-number">01</span>
+              <span class="project-type">website</span>
+            </div>
+            <h3>linux terminal thingy</h3>
+            <p>
+              un website que simula una terminal de linux, puedes probar
+              comandos y ver como funcionan. hay easter eggs!
+            </p>
+            <p class="project-tools">html, css, javascript</p>
+            <p class="project-link">
+              <a
+                href="https://agustinasmontoro.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click aqui<span aria-hidden="true">↗</span>
+              </a>
+            </p>
+          </article>
+          <article class="project">
+            <div class="project-topline">
+              <span class="project-number">02</span>
+              <span class="project-type">website</span>
+            </div>
+            <h3>pixel wall</h3>
+            <p>
+              un website donde puedes dibujar en un grid de 16x16 pixeles y
+              dejar tu dibujo para siempre en el muro.
+            </p>
+            <p class="project-tools">html, css, javascript</p>
+            <p class="project-link">
+              <a
+                href="https://nintend0llspixellwall.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click aqui<span aria-hidden="true">↗</span>
+              </a>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <h2 class="section-label"><span>03</span> / contacto</h2>
+        <div>
+          <p>puedes escribirme a mi correo o contactarme por linkedin!</p>
+          <p class="contact-email">agustinasanchezmontoro@gmail.com</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>made w love · © 2026 Agustina S. Montoro</p>
+      <a href="#home">volver ↑</a>
+    </footer>
+    <script>
+      const revealSections = document.querySelectorAll(
+        ".content-section, .contact-section",
+      );
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if ("IntersectionObserver" in window && !prefersReducedMotion) {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+
+        revealSections.forEach((section) => {
+          section.classList.add("reveal-ready");
+          revealObserver.observe(section);
+        });
+      }
+    </script>
+  </body>
+</html>
