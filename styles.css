@@ -262,6 +262,10 @@ h1 {
 h1 span {
   color: var(--lilac);
   font-style: italic;
+  text-decoration: underline;
+  text-decoration-color: var(--soft-pink);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.1em;
 }
 
 .intro-copy {
