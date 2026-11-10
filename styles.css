@@ -1,15 +1,16 @@
 :root {
   color-scheme: light;
-  --lavender: #dee2ff;
-  --soft-pink: #efd3d7;
-  --rose: #96566a;
-  --lilac: #c4a9d8;
-  --slate: #8e9aaf;
-  --ink: #383044;
-  --muted: #5f6879;
-  --accent: #feeafa;
-  --accent-ink: #53627a;
-  --rule: rgb(203 192 211 / 66%);
+  --lavender: #dee5ed;
+  --soft-pink: #e8ccd7;
+  --rose: #6c6c6a;
+  --lilac: #e8ccd7;
+  --slate: #6c6c6a;
+  --ink: #6c6c6a;
+  --muted: #6c6c6a;
+  --accent: #e8ccd7;
+  --accent-ink: #6c6c6a;
+  --floral-white: #fffbf0;
+  --rule: rgb(108 108 106 / 25%);
 }
 
 @font-face {
@@ -61,7 +62,7 @@ a {
 a:focus-visible {
   outline: 2px solid var(--accent-ink);
   outline-offset: 4px;
-  box-shadow: 0 0 0 5px var(--accent);
+  box-shadow: 0 0 0 5px var(--floral-white);
 }
 
 .site-header {
@@ -108,17 +109,59 @@ a:focus-visible {
 }
 
 .site-nav a,
+.contact-section a,
+.contact-section .contact-copy,
+.cv-section a,
 .site-footer > a:last-child {
+  position: relative;
   display: inline-block;
   transition:
     color 180ms ease,
     transform 180ms ease;
 }
 
+.site-nav a::after,
+.contact-section a::after,
+.contact-section .contact-copy::after,
+.cv-section a::after,
+.site-footer > a:last-child::after {
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  left: 0;
+  height: 1px;
+  background: var(--soft-pink);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
 .site-nav a:hover,
-.site-footer > a:last-child:hover {
-  color: var(--slate);
+.site-nav a:focus-visible,
+.contact-section a:hover,
+.contact-section a:focus-visible,
+.contact-section .contact-copy:hover,
+.contact-section .contact-copy:focus-visible,
+.cv-section a:hover,
+.cv-section a:focus-visible,
+.site-footer > a:last-child:hover,
+.site-footer > a:last-child:focus-visible {
+  color: var(--soft-pink);
   transform: translateY(-2px);
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after,
+.contact-section a:hover::after,
+.contact-section a:focus-visible::after,
+.contact-section .contact-copy:hover::after,
+.contact-section .contact-copy:focus-visible::after,
+.cv-section a:hover::after,
+.cv-section a:focus-visible::after,
+.site-footer > a:last-child:hover::after,
+.site-footer > a:last-child:focus-visible::after {
+  transform: scaleX(1);
 }
 
 main {
@@ -197,7 +240,7 @@ main {
   height: 7px;
   border-radius: 50%;
   border: 1px solid var(--slate);
-  background: var(--accent);
+  background: var(--floral-white);
 }
 
 h1,
@@ -227,6 +270,23 @@ h1 span {
   color: var(--muted);
   font-size: 18px;
   line-height: 1.9;
+}
+
+.intro-copy.is-typing::after {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1em;
+  margin-left: 0.12em;
+  background: currentColor;
+  content: "";
+  vertical-align: -0.12em;
+  animation: terminal-cursor 900ms steps(2, end) infinite;
+}
+
+@keyframes terminal-cursor {
+  50% {
+    opacity: 0;
+  }
 }
 
 .text-link,
@@ -289,19 +349,22 @@ h1 span {
   transform: translateY(0);
 }
 
-.section-label {
+.section-label,
+.projects-section .section-label h2 {
   margin: 4px 0 0;
   color: var(--ink);
-  font-family: "Maple Mono", monospace;
-  font-size: 17px;
+  font-family: "Neue Haas Display", sans-serif;
+  font-size: 21px;
   font-weight: 400;
-  line-height: 1.6;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
 }
 
 .section-label > span,
 .section-label h2 > span {
   margin-right: 11px;
   color: var(--slate);
+  font-family: "Maple Mono", monospace;
   font-size: 13px;
   font-weight: 500;
 }
@@ -362,13 +425,6 @@ h1 span {
   margin-top: 2px;
 }
 
-.projects-section .section-label h2 {
-  margin: 4px 0 9px;
-  font-family: "Maple Mono", monospace;
-  font-size: 17px;
-  font-weight: 400;
-}
-
 .projects-section .section-label > p {
   margin: 0 0 0 24px;
   color: var(--muted);
@@ -415,8 +471,51 @@ h1 span {
 
 .project-tools {
   margin: 0 0 17px;
-  color: var(--muted);
-  font-size: 14px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+}
+
+.technology-icon {
+  width: 21px;
+  height: 21px;
+  display: block;
+}
+
+.technology-icon path {
+  fill: currentColor;
+}
+
+.technology-icon text {
+  fill: var(--floral-white);
+  font-family: "Maple Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.technology-icon-html {
+  color: var(--soft-pink);
+}
+
+.technology-icon-css {
+  color: var(--ink);
+}
+
+.technology-icon-js {
+  color: var(--soft-pink);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .project-link {
@@ -432,11 +531,31 @@ h1 span {
 .contact-email {
   width: fit-content;
   margin: 0;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--slate);
-  color: var(--accent-ink);
   font-size: 14px;
   font-weight: 600;
+}
+
+.contact-copy {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.contact-copy:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 5px var(--floral-white);
+}
+
+.copy-feedback {
+  margin-left: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .contact-section {
@@ -456,6 +575,19 @@ h1 span {
 
 .contact-section div > p {
   margin-bottom: 18px;
+}
+
+.cv-section p {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.cv-section a {
+  width: fit-content;
+}
+
+.cv-section a span {
+  margin-left: 4px;
 }
 
 .site-footer {
@@ -624,5 +756,9 @@ h1 span {
 
   .ascii-char {
     animation: none;
+  }
+
+  .intro-copy.is-typing::after {
+    display: none;
   }
 }

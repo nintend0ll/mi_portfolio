@@ -17,15 +17,7 @@
   <body>
     <header class="site-header">
       <a class="header-name" href="#home">
-        <img
-          class="header-mark"
-          src="assets/icono.png"
-          alt=""
-          aria-hidden="true"
-          width="150"
-          height="150"
-        />
-        <span class="header-caption">portfolio ꕤ 2026</span>
+        <span class="header-caption">portfolio ꕤ</span>
       </a>
       <nav class="site-nav" aria-label="Main navigation">
         <a href="#about">acerca de mí</a>
@@ -38,7 +30,14 @@
       <section class="intro">
         <div class="intro-copy-block">
           <h1>hi, soy<br /><span>Agustina.</span><br /></h1>
-          <p class="intro-copy">/ analista programadora full stack.</p>
+          <p
+            class="intro-copy"
+            aria-label="/ analista programadora full stack."
+          >
+            <span class="intro-copy-text" aria-hidden="true"
+              >/ analista programadora full stack.</span
+            >
+          </p>
         </div>
         <pre
           class="ascii-logo"
@@ -93,6 +92,42 @@
           });
 
           asciiLogo.replaceChildren(asciiContent);
+
+          const introCopy = document.querySelector(".intro-copy-text");
+          const introText = introCopy.textContent;
+
+          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            let characterCount = 0;
+            introCopy.textContent = "";
+            introCopy.closest(".intro-copy").classList.add("is-typing");
+
+            const typeNextCharacter = () => {
+              characterCount += 1;
+              introCopy.textContent = introText.slice(0, characterCount);
+
+              if (characterCount < introText.length) {
+                window.setTimeout(typeNextCharacter, 85);
+              } else {
+                window.setTimeout(deleteNextCharacter, 2400);
+              }
+            };
+
+            const deleteNextCharacter = () => {
+              characterCount -= 1;
+              introCopy.textContent = introText.slice(0, characterCount);
+
+              if (characterCount > 0) {
+                window.setTimeout(deleteNextCharacter, 45);
+              } else {
+                window.setTimeout(typeNextCharacter, 900);
+              }
+            };
+
+            window.setTimeout(() => {
+              typeNextCharacter();
+            }, 650);
+          }
+
           document.addEventListener("copy", (event) => {
             const selection = window.getSelection();
             if (
@@ -133,7 +168,41 @@
               un website que simula una terminal de linux, puedes probar
               comandos y ver como funcionan. hay easter eggs!
             </p>
-            <p class="project-tools">html, css, javascript</p>
+            <ul class="project-tools" aria-label="Tecnologías utilizadas">
+              <li>
+                <svg
+                  class="technology-icon technology-icon-html"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M3 1h18l-1.7 20L12 23 4.7 21 3 1Z" />
+                  <text x="12" y="17" text-anchor="middle">5</text>
+                </svg>
+                <span class="visually-hidden">HTML5</span>
+              </li>
+              <li>
+                <svg
+                  class="technology-icon technology-icon-css"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M3 1h18l-1.7 20L12 23 4.7 21 3 1Z" />
+                  <text x="12" y="17" text-anchor="middle">3</text>
+                </svg>
+                <span class="visually-hidden">CSS3</span>
+              </li>
+              <li>
+                <svg
+                  class="technology-icon technology-icon-js"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M2 2h20v20H2z" />
+                  <text x="12" y="16" text-anchor="middle">JS</text>
+                </svg>
+                <span class="visually-hidden">JavaScript</span>
+              </li>
+            </ul>
             <p class="project-link">
               <a
                 href="https://agustinasmontoro.vercel.app/"
@@ -154,7 +223,41 @@
               un website donde puedes dibujar en un grid de 16x16 pixeles y
               dejar tu dibujo para siempre en el muro.
             </p>
-            <p class="project-tools">html, css, javascript</p>
+            <ul class="project-tools" aria-label="Tecnologías utilizadas">
+              <li>
+                <svg
+                  class="technology-icon technology-icon-html"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M3 1h18l-1.7 20L12 23 4.7 21 3 1Z" />
+                  <text x="12" y="17" text-anchor="middle">5</text>
+                </svg>
+                <span class="visually-hidden">HTML5</span>
+              </li>
+              <li>
+                <svg
+                  class="technology-icon technology-icon-css"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M3 1h18l-1.7 20L12 23 4.7 21 3 1Z" />
+                  <text x="12" y="17" text-anchor="middle">3</text>
+                </svg>
+                <span class="visually-hidden">CSS3</span>
+              </li>
+              <li>
+                <svg
+                  class="technology-icon technology-icon-js"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M2 2h20v20H2z" />
+                  <text x="12" y="16" text-anchor="middle">JS</text>
+                </svg>
+                <span class="visually-hidden">JavaScript</span>
+              </li>
+            </ul>
             <p class="project-link">
               <a
                 href="https://nintend0llspixellwall.vercel.app/"
@@ -172,7 +275,36 @@
         <h2 class="section-label"><span>03</span> / contacto</h2>
         <div>
           <p>puedes escribirme a mi correo o contactarme por linkedin!</p>
-          <p class="contact-email">agustinasanchezmontoro@gmail.com</p>
+          <p class="contact-email">
+            <button
+              class="contact-copy"
+              type="button"
+              aria-label="Copiar correo electrónico"
+              data-copy="agustinasanchezmontoro@gmail.com"
+            >
+              agustinasanchezmontoro@gmail.com
+            </button>
+            <span class="copy-feedback" role="status" aria-live="polite"></span>
+          </p>
+          <p class="contact-linkedin">
+            <a
+              href="https://www.linkedin.com/in/agustina-sanchez-montoro/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              linkedin<span aria-hidden="true">↗</span>
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section cv-section" id="curriculum">
+        <h2 class="section-label"><span>04</span> / currículum</h2>
+        <div class="section-content">
+          <p>conocé más sobre mi experiencia y formación.</p>
+          <a href="assets/curriculum.pdf" download
+            >descargar currículum <span aria-hidden="true">↓</span></a
+          >
         </div>
       </section>
     </main>
@@ -207,6 +339,40 @@
           revealObserver.observe(section);
         });
       }
+
+      const copyEmailButton = document.querySelector(".contact-copy");
+      const copyFeedback = document.querySelector(".copy-feedback");
+
+      copyEmailButton.addEventListener("click", async () => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(copyEmailButton.dataset.copy);
+          } else {
+            const temporaryInput = document.createElement("textarea");
+            temporaryInput.value = copyEmailButton.dataset.copy;
+            temporaryInput.setAttribute("readonly", "");
+            temporaryInput.style.position = "fixed";
+            temporaryInput.style.opacity = "0";
+            document.body.append(temporaryInput);
+            let copied = false;
+
+            try {
+              temporaryInput.select();
+              copied = document.execCommand("copy");
+            } finally {
+              temporaryInput.remove();
+            }
+
+            if (!copied) {
+              throw new Error("No se pudo copiar el correo.");
+            }
+          }
+
+          copyFeedback.textContent = "¡copiado!";
+        } catch {
+          copyFeedback.textContent = "No se pudo copiar. Seleccioná el correo.";
+        }
+      });
     </script>
   </body>
 </html>
