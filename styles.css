@@ -364,7 +364,7 @@ h1 span {
 .section-label h2 > span {
   margin-right: 11px;
   color: var(--slate);
-  font-family: "Maple Mono", monospace;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 500;
 }
