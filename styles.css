@@ -7,7 +7,7 @@
   --slate: #6c6c6a;
   --ink: #6c6c6a;
   --muted: #6c6c6a;
-  --accent: #e8ccd7;
+  --accent: #e9adc5;
   --accent-ink: #6c6c6a;
   --floral-white: #fffbf0;
   --rule: rgb(108 108 106 / 25%);
@@ -188,7 +188,7 @@ main {
   max-width: 100%;
   margin: 0;
   justify-self: center;
-  color: var(--accent-ink);
+  color: var(--accent);
   font-family: "Maple Mono", monospace;
   font-size: clamp(12.5px, 1.12vw, 16px);
   font-weight: 600;
@@ -208,20 +208,32 @@ main {
 
 .ascii-char {
   display: inline-block;
+  color: transparent;
+  background-image: linear-gradient(
+    110deg,
+    #d889a8 0%,
+    var(--accent) 35%,
+    #7e7074 50%,
+    var(--accent) 70%,
+    #d889a8 100%
+  );
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
   animation: ascii-shimmer 3.2s ease-in-out var(--delay) infinite;
 }
 
 @keyframes ascii-shimmer {
   0%,
   100% {
-    color: var(--accent-ink);
     opacity: 0.72;
     transform: translateY(0);
+    background-position: 100% 50%;
   }
   50% {
-    color: var(--lilac);
     opacity: 1;
     transform: translateY(-1px);
+    background-position: 0% 50%;
   }
 }
 
@@ -260,7 +272,7 @@ h1 {
 }
 
 h1 span {
-  color: var(--lilac);
+  color: var(--accent);
   font-style: italic;
   text-decoration: underline;
   text-decoration-color: var(--soft-pink);
